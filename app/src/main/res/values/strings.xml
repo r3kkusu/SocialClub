@@ -3,4 +3,10 @@
     <string name="profile_image">Profile Image</string>
     <string name="search">Search</string>
     <string name="stories">Stories</string>
+    <string name="active">Active</string>
+    <string name="trending">Trending</string>
+    <string name="discover">Discover</string>
+    <string name="more">More</string>
+    <string name="forward_arrow">Forward Arrow</string>
+    <string name="like">Like</string>
 </resources>

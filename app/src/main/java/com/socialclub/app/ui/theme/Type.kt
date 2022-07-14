@@ -32,6 +32,12 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp
     ),
+    subtitle1 = TextStyle(
+        color = SoftWhite,
+        fontFamily = gilroy,
+        fontWeight = FontWeight.Bold,
+        fontSize = 10.sp
+    ),
     h1 = TextStyle(
         color = SoftWhite,
         fontFamily = gilroy,
@@ -49,5 +55,11 @@ val Typography = Typography(
         fontFamily = gilroy,
         fontWeight = FontWeight.Bold,
         fontSize = 14.sp
+    ),
+    h4 = TextStyle(
+        color = SoftWhite,
+        fontFamily = gilroy,
+        fontWeight = FontWeight.Bold,
+        fontSize = 12.sp
     )
 )

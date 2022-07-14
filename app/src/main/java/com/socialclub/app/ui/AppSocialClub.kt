@@ -9,6 +9,7 @@ import com.socialclub.app.ui.theme.DeepBlack
 
 @Composable
 fun AppSocialClub() {
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = DeepBlack

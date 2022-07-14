@@ -4,4 +4,5 @@ data class Story(
     val state: String,
     val views: Long,
     val resource: Int,
+    val title: String
 )
