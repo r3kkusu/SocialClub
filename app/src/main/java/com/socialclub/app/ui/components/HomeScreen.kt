@@ -1,5 +1,10 @@
 package com.socialclub.app.ui.components
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideIn
+import androidx.compose.animation.slideOut
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -15,15 +20,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.socialclub.app.R
 import com.socialclub.app.data.Person
 import com.socialclub.app.data.Post
 import com.socialclub.app.data.Story
 import com.socialclub.app.ui.theme.*
-import com.socialclub.app.utils.prettyCount
-import kotlin.math.abs
 
 @Composable
 fun HomeScreen() {
@@ -93,21 +96,46 @@ fun HomeScreen() {
         )
     )
 
-    Column {
-        HeaderUI()
-        StoriesUI(persons)
-        Column(
-            modifier = Modifier.verticalScroll(rememberScrollState())
-        ) {
-            PostCollection("Trending", trendingPost)
-            PostCollection("Discover", discoverPost)
+    var isVisible by remember {
+        mutableStateOf(false)
+    }
+
+
+    Box {
+        Column {
+            HeaderUI(onProfilePress = { isVisible = it })
+            StoriesUI(persons)
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState())
+            ) {
+                PostCollection("Trending", trendingPost)
+                PostCollection("Discover", discoverPost)
+            }
         }
+    }
+
+
+    AnimatedVisibility(
+        visible = isVisible,
+        enter = slideIn (
+            initialOffset = {
+                    fullSize ->  IntOffset(0, fullSize.height)
+            },
+            animationSpec = tween(durationMillis = 350, easing = LinearOutSlowInEasing)
+        ),
+        exit = slideOut (
+            targetOffset = {
+                    fullSize ->  IntOffset(0, fullSize.height)
+            },
+            animationSpec = tween(durationMillis = 350, easing = LinearOutSlowInEasing)
+        )
+    ) {
+        ProfileScreen(onPressClose = { isVisible = it })
     }
 }
 
 @Composable
-fun HeaderUI() {
-    var isVisible by remember { mutableStateOf(false) }
+fun HeaderUI(onProfilePress: (Boolean) -> Unit) {
     Row(
         modifier = Modifier
             .padding(15.dp)
@@ -115,7 +143,9 @@ fun HeaderUI() {
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = { isVisible != isVisible }) {
+            IconButton(onClick = {
+                onProfilePress(true)
+            }) {
                 Box {
                     Image(
                         modifier = Modifier
