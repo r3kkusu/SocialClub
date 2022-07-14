@@ -10,4 +10,6 @@
     <string name="forward_arrow">Forward Arrow</string>
     <string name="like">Like</string>
     <string name="link">Link</string>
+    <string name="post">Post</string>
+    <string name="videos">Videos</string>
 </resources>

@@ -2,6 +2,7 @@ package com.socialclub.app.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,12 +13,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 
 
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.socialclub.app.R
 import com.socialclub.app.data.Person
 import com.socialclub.app.ui.theme.*
@@ -40,6 +43,7 @@ fun ProfileScreen(onPressClose : (Boolean) -> Unit) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             GestureButton(onPressClose)
             ProfileAccount()
+            PostOptions();
         }
     }
 }
@@ -134,5 +138,53 @@ fun FriendsItems(title: String, person: List<Person>, count: Long) {
             Text(modifier = Modifier.padding(start = 5.dp), text = prettyCount(count), style = Typography.h3)
         }
         Text(text = title, style = Typography.h3, color = CloudGray)
+    }
+}
+
+@Composable
+fun PostOptions() {
+    Row(modifier = Modifier.padding(top = 10.dp)) {
+        IconButton(modifier = Modifier.border(3.dp, DeepBlack, RoundedCornerShape(20.dp)), onClick = { /*TODO*/ }) {
+            Row(modifier = Modifier.padding(30.dp, 10.dp), verticalAlignment = Alignment.CenterVertically) {
+                Text(text = stringResource(id = R.string.post), style = Typography.h3)
+                Box(modifier = Modifier
+                    .padding(5.dp)
+                    .background(DarkYellow)) {
+                    Text(
+                        modifier = Modifier.padding(3.dp)
+                            .clip(RoundedCornerShape(20.dp)), // TODO Fix rounded corners
+                        text = "60",
+                        style = Typography.h4,
+                        fontSize = 11.sp,
+                        color = JoyfulYellow
+                    )
+                }
+            }
+        }
+
+//        IconButton(modifier = Modifier
+//            .border(3.dp, DeepBlack, RoundedCornerShape(20.dp))
+//            .size(100.dp, 50.dp)
+//
+//            .background(JoyfulYellow)
+//            .clip(RoundedCornerShape(20.dp)), onClick = { /*TODO*/ }) {
+//            Row(modifier = Modifier.fillMaxSize(),
+//                horizontalArrangement = Arrangement.Center,
+//                verticalAlignment = Alignment.CenterVertically) {
+//                Text(text = stringResource(id = R.string.videos), style = Typography.h3, color = Color.White)
+//                Box(modifier = Modifier
+//                    .padding(5.dp)
+//                    .background(DarkYellow)) {
+//                    Text(
+//                        modifier = Modifier.padding(3.dp)
+//                            .clip(RoundedCornerShape(20.dp)), // TODO Fix rounded corners
+//                        text = "60",
+//                        style = Typography.h4,
+//                        fontSize = 11.sp,
+//                        color = JoyfulYellow
+//                    )
+//                }
+//            }
+//        }
     }
 }
